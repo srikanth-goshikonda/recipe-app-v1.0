@@ -1,0 +1,18 @@
+<a class="btn" [routerLink]="recipe.key" fragment="editRecipe">
+  <div class="card">
+    <img
+      [src]="recipe.imgPath"
+      class="img-size card-img-top d-none d-sm-block"
+      alt="recipe-image"
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        <i
+          class="bi bi-arrow-right-circle d-inline d-sm-none pe-1 text-danger"
+        ></i>
+        {{ recipe.name }}
+      </h5>
+      <p class="card-text">{{ recipe.description }}</p>
+    </div>
+  </div>
+</a>

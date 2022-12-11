@@ -1,0 +1,113 @@
+<ng-template appPlaceholder></ng-template>
+<section id="recipeForm">
+  <div class="container">
+    <form (ngSubmit)="onSave()" [formGroup]="recipeForm">
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="recipeForm.invalid"
+            [innerText]="editMode ? 'Update' : 'Save'"
+          ></button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-danger" type="button" routerLink="../">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="e.g Tomato Curry"
+            formControlName="name"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="imageURL" class="form-label">Image URL</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="URI path for image"
+            formControlName="imgPath"
+            #imgRef
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <img [src]="imgRef.value" class="img-fluid my-2" alt="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            name="desc"
+            id="desc"
+            cols="10"
+            rows="2"
+            class="form-control"
+            placeholder="describe the recipe "
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row" *ngIf="getFormArray().length != 0">
+        <div class="col-12" formArrayName="ingredients">
+          <div
+            class="row mb-2"
+            *ngFor="let ing of getFormArray().controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name of Ingredient"
+                formControlName="name"
+                name="name"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="e.g. 2"
+                formControlName="amount"
+                name="amount"
+              />
+            </div>
+            <div class="col-2">
+              <button
+                class="btn btn-danger ps-auto"
+                (click)="closeIngredientControl(i)"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center text-center">
+        <div class="col-md-6 col-sm-4">
+          <button
+            class="btn btn-secondary btn-sm mt-2"
+            type="button"
+            (click)="addIngredientControl()"
+          >
+            Add More Ingredient
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col-xs-1 w-auto">
+      <app-shopping-edit></app-shopping-edit>
+      <hr />
+      <div class="list-group">
+        <span *ngFor="let ingredient of ingredients; let i = index">
+          <a
+            (click)="select(i)"
+            class="list-group-item list-group-item-action btn"
+            aria-current="true"
+          >
+            {{ ingredient.name }} || {{ ingredient.amount }}
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

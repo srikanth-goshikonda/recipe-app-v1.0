@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div
+  class="modal fade show"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  style="display: block"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(109 185 235)">
+        <h5
+          class="modal-title"
+          id="exampleModalLabel"
+          [innerText]="mode ? 'Confirm ?' : 'Info'"
+        ></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onCancel()"
+        ></button>
+      </div>
+      <div class="modal-body">{{ message }}</div>
+      <div class="modal-footer" style="background-color: #ecf0f1">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onCancel()"
+          [ngClass]="{ 'd-none': !mode }"
+        >
+          Cancel
+        </button>
+        <button
+          type="button "
+          class="btn"
+          [ngClass]="{ 'btn-danger': mode, 'btn-warning': !mode }"
+          (click)="onSave()"
+        >
+          Okay
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

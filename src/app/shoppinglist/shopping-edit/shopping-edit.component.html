@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="e.g. Tomato"
+            name="name"
+            ngModel
+            required
+          />
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="name" class="form-label">Amount</label>
+          <input
+            required
+            type="number"
+            class="form-control"
+            placeholder="e.g. 15"
+            name="amount"
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-12 d-flex gap-3">
+          <button
+            class="btn btn-success"
+            [disabled]="f.invalid"
+            type="button"
+            (click)="onAdd(f)"
+            [innerText]="editMode ? 'Update' : 'Add'"
+          ></button>
+          <button
+            *ngIf="editMode"
+            [disabled]="f.invalid"
+            class="btn btn-danger"
+            type="button"
+            (click)="onDelete()"
+          >
+            Delete
+          </button>
+          <button
+            [disabled]="f.invalid"
+            class="btn btn-warning"
+            type="button"
+            (click)="f.reset(); editMode = false"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

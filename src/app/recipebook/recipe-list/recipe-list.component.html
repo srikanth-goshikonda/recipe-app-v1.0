@@ -1,0 +1,29 @@
+<div class="container-lg">
+  <div class="row justify-content-center mb-3">
+    <div class="col-12">
+      <a class="btn btn-primary" routerLink="add" fragment="recipeForm"
+        >Add Recipe</a
+      >
+    </div>
+  </div>
+  <hr />
+  <div class="row justify-content-start align-items-start">
+    <div
+      *ngIf="isFetching"
+      class="spinner-border"
+      style="width: 3rem; height: 3rem"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error != undefined">
+      {{ error }}
+    </div>
+    <app-recipe-item
+      *ngFor="let recipe of recipes"
+      [recipe]="recipe"
+      class="col-sm-10 col-lg-6 col-sm-3"
+    >
+    </app-recipe-item>
+  </div>
+</div>

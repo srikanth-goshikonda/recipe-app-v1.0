@@ -1,0 +1,66 @@
+<ng-template appPlaceholder></ng-template>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h4 *ngIf="errorMessage != null" class="alert alert-danger text-center">
+        {{ errorMessage }}
+      </h4>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-10 col-md-3">
+    <div
+      class="spinner-border text-danger text-center"
+      role="status"
+      *ngIf="isLoading"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="auth(form)" *ngIf="!isLoading">
+      <h3 class="text-center text-mute">
+        {{ mode ? "Login Form" : "Sign Up" }}
+      </h3>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          required
+          email
+          name="email"
+          ngModel
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          required
+          minlength="6"
+          name="password"
+          ngModel
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-warning"
+        [disabled]="!form.valid"
+        [innerText]="mode ? 'Login' : 'Signup'"
+      ></button>
+      |
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [routerLink]="['../', mode ? 'signup' : 'login']"
+      >
+        Switch to Sign Up
+      </button>
+    </form>
+  </div>
+</div>

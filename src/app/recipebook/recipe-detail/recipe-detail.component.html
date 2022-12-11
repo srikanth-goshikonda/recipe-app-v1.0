@@ -1,0 +1,75 @@
+<ng-template appPlaceholder></ng-template>
+<div
+  *ngIf="isFetching"
+  class="spinner-border"
+  style="width: 3rem; height: 3rem"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="error != undefined">
+  <h2>Error Occured</h2>
+  <h3>{{ error }}</h3>
+</div>
+<section id="editRecipe" *ngIf="recipe != null">
+  <div class="row m-auto">
+    <div class="col-xs-12">
+      <img
+        [src]="recipe.imgPath"
+        alt="recipe-image"
+        class="img-fluid rounded-5"
+      />
+      <h1 class="text-center">{{ recipe.name }}</h1>
+    </div>
+  </div>
+  <div class="row m-auto">
+    <div class="col-xs-12">
+      <div class="dropdown">
+        <button
+          class="btn btn-warning dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Manage Recipe
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" (click)="toShoppingList(recipe)"
+              >To Shopping List</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              [routerLink]="['edit']"
+              fragment="recipeForm"
+              >Edit Recipe</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="onDelete(recipe.key)"
+              >Delete Recipe</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-auto">
+    <div class="col-xs-12">
+      <p>{{ recipe.description }}</p>
+    </div>
+  </div>
+
+  <div class="row m-auto">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ing of recipe.ingredients">
+          {{ ing.name }} || {{ ing.amount }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
